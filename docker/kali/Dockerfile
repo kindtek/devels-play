@@ -563,10 +563,12 @@ ENV DEBIAN_FRONTEND=noninteractive
 WORKDIR /
 RUN \
     --mount=type=cache,target=/var/cache/dvlp/base-kernel,sharing=locked \
+    export DEBIAN_FRONTEND=noninteractive && \
     rm -rf /var/lib/apt/lists && \
-    apt-get update --fix-missing -y && apt-get install -f && apt-get upgrade -y && \
+    apt-get update --fix-missing -y && apt-get install -f && apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y upgrade && \
     apt-get purge -y openssh-server
 RUN \
+    export DEBIAN_FRONTEND=noninteractive && \
     apt-get install --no-install-recommends -y apt-utils apt-transport-https curl libssl-dev locales openssh-server sudo ssh systemd-sysv sysvinit-utils vim wget && \    
     usermod -aG docker root && \
     usermod -aG docker ${_R00T} && \
