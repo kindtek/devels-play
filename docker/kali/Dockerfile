@@ -1209,7 +1209,7 @@ RUN \
     # RUN \
     #     rm -rf /etc/ssl/certs/* && \
     #     update-ca-certificates 
-    apt-get install --install-recommends -y apt-transport-https curl && \
+    apt-get install --install-recommends -o Dpkg::Options::="--force-confnew" -y apt-transport-https curl && \
     curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg && \
     echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=$(dpkg --print-architecture)] https://brave-browser-apt-release.s3.brave.com/ stable main" | tee /etc/apt/sources.list.d/brave-browser-release.list && \
     rm -rf /var/lib/apt/lists && \
