@@ -600,12 +600,14 @@ ENV DEBIAN_FRONTEND=noninteractive
 WORKDIR /
 RUN \
     --mount=type=cache,target=/var/cache/dvlp/base-kernel,sharing=locked \
+    export DEBIAN_FRONTEND=noninteractive && \
     rm -rf /var/lib/apt/lists && \
-    apt-get update --fix-missing -y && apt-get install -f && apt-get upgrade -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y && \
+    apt-get update --fix-missing -y && apt-get install -f && apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y upgrade && \
     apt-get purge -y openssh-server
 RUN \
-    apt-get update --fix-missing -y && apt-get install -f && apt-get upgrade -y && \
-    apt-get install --no-install-recommends -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y apt-utils apt-transport-https curl libssl-dev locales openssh-server sudo ssh systemd-sysv sysvinit-utils vim wget && \    
+    export DEBIAN_FRONTEND=noninteractive && \
+    apt-get update --fix-missing -y && apt-get install -f && apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y upgrade && \
+    apt-get install --no-install-recommends -y apt-utils apt-transport-https curl libssl-dev locales openssh-server sudo ssh systemd-sysv sysvinit-utils vim wget && \    
     usermod -aG docker root && \
     usermod -aG docker ${_R00T} && \
     usermod -aG sudo ${_AGL} && \
@@ -614,8 +616,9 @@ RUN \
     rm -rf /var/cache/apt 
 RUN \
     --mount=type=cache,target=/var/cache/dvlp/build-kernel,sharing=locked \
-    apt-get update --fix-missing -y && apt-get install -f && apt-get upgrade -y && \
-    apt-get install --install-recommends -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y alien autoconf apt-utils apt-transport-https bison bc build-essential busybox cpio curl dbus-user-session daemonize dwarves fakeroot flex fontconfig \
+    export DEBIAN_FRONTEND=noninteractive && \
+    apt-get update --fix-missing -y && apt-get install -f && apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y upgrade && \
+    apt-get install --install-recommends -y alien autoconf apt-utils apt-transport-https bison bc build-essential busybox cpio curl dbus-user-session daemonize dwarves fakeroot flex fontconfig \
     gawk gh git gnupg2 kmod libblkid-dev libffi-dev libudev-dev libaio-dev libattr1-dev libelf-dev libpam-systemd libncurses-dev libssl-dev libssl-dev lightdm lxcfs pigz plymouth plzip pkg-config python3-dev \
     python3-setuptools python3-cffi nvi net-tools rsync screen shellcheck ssh systemd-sysv sysvinit-utils snapd systemd-sysv sysvinit-utils uuid-dev virtualbox zstd wget && \
     apt-get update --fix-missing -y && apt-get install -f && apt-get upgrade -y && \
