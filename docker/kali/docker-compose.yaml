@@ -202,21 +202,21 @@ services:
     volumes_from:
       - build-template
     volumes:
-      - repo_agl:/repos/dvlw
-      - repo_agl:/r00t/dvlw
-      - repo_agl:/home/r00t/dvlw
-      - repo_agl:/hal/dvlw
-      - repo_agl:/home/${_AGL}/dvlw
-      - repo_dvl:/hel/dvlw
-      - repo_dvl:/home/${_DVL}/dvlw
-      - mnt-data:/mnt/data
-      - home_agl:/hal
-      - home_agl:/home/${_AGL}
-      - home_dvl:/hel
-      - home_dvl:/home/${_DVL}
-      - home_r00t:/r00t
-      - home_r00t:/home/r00t
-      - dls:/dls
+      # - repo_agl:/repos/dvlw
+      # - repo_agl:/r00t/dvlw
+      # - repo_agl:/home/r00t/dvlw
+      # - repo_agl:/hal/dvlw
+      # - repo_agl:/home/${_AGL}/dvlw
+      # - repo_dvl:/hel/dvlw
+      # - repo_dvl:/home/${_DVL}/dvlw
+      # - mnt-data:/mnt/data
+      # - home_agl:/hal
+      # - home_agl:/home/${_AGL}
+      # - home_dvl:/hel
+      # - home_dvl:/home/${_DVL}
+      # - home_r00t:/r00t
+      # - home_r00t:/home/r00t
+      # - dls:/dls
       - repo_agl-kernel:/repos/dvlw/dvlp/kernels
       - repo_agl-kernel:/r00t/dvlw/dvlp/kernels
       - repo_agl-kernel:/home/r00t/dvlw/dvlp/kernels
