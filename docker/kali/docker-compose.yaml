@@ -199,8 +199,8 @@ services:
     extends: vols
     build:
       target: dvlp_base-kernel-volumes-built
-    volumes_from:
-      - build-template
+    # volumes_from:
+    #   - build-template
     volumes:
       # - repo_agl:/repos/dvlw
       # - repo_agl:/r00t/dvlw
